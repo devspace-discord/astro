@@ -33,7 +33,8 @@ asyncio.get_event_loop().run_until_complete(database_setup())
 
 bot.cog_list = [
     "cogs.core.database",
-    "cogs.core.staff"
+    "cogs.core.staff",
+    "cogs.commands.tags"
 ]
 for cog in bot.cog_list:
     bot.load_extension(cog)
