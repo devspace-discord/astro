@@ -20,6 +20,15 @@ class Database(commands.Cog):
                 user_id
             )
 
+    async def remove_staff(self, user_id):
+        """Removes a member from the staff list"""
+
+        async with self.db.acquire() as conn:
+            await conn.execute(
+                "DELETE FROM staff WHERE user_id = $1",
+                user_id
+            )
+
     async def add_tag(self, tag, author):
         """Adds a tag to the database"""
 
