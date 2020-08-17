@@ -33,6 +33,9 @@ class Database(commands.Cog):
     async def remove_staff(self, user_id):
         """Removes a member from the staff list"""
 
+        if user_id not in self.bot.staff_list:
+            return
+
         async with self.db.acquire() as conn:
             await conn.execute(
                 "DELETE FROM staff WHERE user_id = $1",
@@ -63,6 +66,10 @@ class Database(commands.Cog):
 
     async def remove_tag(self, tag):
         """Removes a tag from the database"""
+
+        existingTag = await self.get_tag(tag)
+        if not tag:
+            return
 
         async with self.db.acquire() as conn:
             await conn.execute(
