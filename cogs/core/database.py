@@ -9,6 +9,7 @@ class Database(commands.Cog):
         """Initialized the Database cog"""
 
         self.bot = bot
+        self.db = self.bot.db
 
     async def add_tag(self, tag, author):
         """Adds a tag to the database"""
@@ -18,6 +19,15 @@ class Database(commands.Cog):
                 "INSERT INTO tags (tag, author) VALUES ($1, $2)",
                 tag, author
             )
+
+    async def get_tag(self, tag):
+        """Gets a tag from the database"""
+
+        tag = await self.db.fetchrow(
+            "SELECT * FROM tags WHERE tag = $1",
+            tag
+        )
+        return tag
 
     async def remove_tag(self, tag):
         """Removes a tag from the database"""
