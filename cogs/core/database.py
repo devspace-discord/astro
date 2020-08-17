@@ -19,6 +19,15 @@ class Database(commands.Cog):
                 tag, author
             )
 
+    async def remove_tag(self, tag):
+        """Removes a tag from the database"""
+
+        async with self.db.acquire() as conn:
+            await conn.execute(
+                "DELETE FROM tags WHERE tag = $1",
+                tag
+            )
+
 
 def setup(bot):
     bot.add_cog(Database(bot))
