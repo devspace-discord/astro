@@ -14,6 +14,10 @@ class Database(commands.Cog):
     async def add_tag(self, tag, author):
         """Adds a tag to the database"""
 
+        existingTag = await self.get_tag(tag)
+        if existingTag:
+            return
+
         async with self.db.acquire() as conn:
             await conn.execute(
                 "INSERT INTO tags (tag, author) VALUES ($1, $2)",
