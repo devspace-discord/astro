@@ -23,6 +23,16 @@ class TagAlreadyExists(Exception):
         return self.message
 
 
+class InvalidTag(Exception):
+    """Raised when the inputted tag does not exist."""
+
+    def __init__(self, message="The inputted tag does not exist."):
+        super().__init__(self.message)
+
+    def __str__(self):
+        return self.message
+
+
 class MemberAlreadyStaff(Exception):
     """Raised when the inputted user is already a staff member."""
 
