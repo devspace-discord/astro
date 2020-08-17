@@ -41,3 +41,13 @@ class MemberAlreadyStaff(Exception):
 
     def __str__(self):
         return self.message
+
+
+class InvalidStaff(Exception):
+    """Raised when the inputted member does not exist."""
+
+    def __init__(self, message="The inputted member does not exist."):
+        super().__init__(self.message)
+
+    def __str__(self):
+        return self.message
