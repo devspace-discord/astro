@@ -1,5 +1,6 @@
 import asyncpg
 import discord
+import * from exceptions
 from discord.ext import commands
 
 
@@ -15,7 +16,7 @@ class Database(commands.Cog):
         """Adds a member to the staff list"""
 
         if user_id in self.bot.staff_list:
-            return
+            raise MemberAlreadyStaff()
 
         async with self.db.acquire() as conn:
             await conn.execute(
@@ -34,7 +35,7 @@ class Database(commands.Cog):
         """Removes a member from the staff list"""
 
         if user_id not in self.bot.staff_list:
-            return
+            raise InvalidStaff()
 
         async with self.db.acquire() as conn:
             await conn.execute(
@@ -47,7 +48,7 @@ class Database(commands.Cog):
 
         existingTag = await self.get_tag(tag)
         if existingTag:
-            return
+            raise TagAlreadyExists()
 
         async with self.db.acquire() as conn:
             await conn.execute(
@@ -69,7 +70,7 @@ class Database(commands.Cog):
 
         existingTag = await self.get_tag(tag)
         if not tag:
-            return
+            raise InvalidTag()
 
         async with self.db.acquire() as conn:
             await conn.execute(
