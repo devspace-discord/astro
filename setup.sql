@@ -1,6 +1,9 @@
 CREATE TABLE IF NOT EXISTS tags (
   tag_id serial,
   tag text,
-  owner_id bigint,
-  timestamp bigint
+  author bigint
+)
+
+CREATE TABLE IF NOT EXISTS staff (
+  user_id bigint
 )
