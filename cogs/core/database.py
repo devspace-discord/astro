@@ -1,6 +1,6 @@
 import asyncpg
 import discord
-import * from exceptions
+from ..exceptions import *
 from discord.ext import commands
 
 
