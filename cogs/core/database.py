@@ -14,6 +14,9 @@ class Database(commands.Cog):
     async def add_staff(self, user_id):
         """Adds a member to the staff list"""
 
+        if user_id in self.bot.staff_list:
+            return
+
         async with self.db.acquire() as conn:
             await conn.execute(
                 "INSERT INTO staff VALUES ($1)",
@@ -25,7 +28,7 @@ class Database(commands.Cog):
 
         staff = self.db.fetchrow("SELECT * FROM staff")
 
-        self.bot.staff = list(staff)
+        self.bot.staff_list = list(staff)
 
     async def remove_staff(self, user_id):
         """Removes a member from the staff list"""

@@ -22,6 +22,7 @@ class TagAlreadyExists(Exception):
     def __str__(self):
         return self.message
 
+
 class MemberAlreadyStaff(Exception):
     """Raised when the inputted user is already a staff member."""
 
