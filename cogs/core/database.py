@@ -11,6 +11,15 @@ class Database(commands.Cog):
         self.bot = bot
         self.db = self.bot.db
 
+    async def add_staff(self, user_id):
+        """Adds a member to the staff list"""
+
+        async with self.db.acquire() as conn:
+            await conn.execute(
+                "INSERT INTO staff VALUES ($1)",
+                user_id
+            )
+
     async def add_tag(self, tag, author):
         """Adds a tag to the database"""
 
