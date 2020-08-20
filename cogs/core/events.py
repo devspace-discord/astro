@@ -15,7 +15,7 @@ class Events(commands.Cog):
         """Triggered when the bot is ready and it's cache is loaded"""
 
         await self.database.update_staff()
-        print(f"\n\n\033[1;32;40mONLINE\n\n")
+        print(f"\n\n            ONLINE\n\n")
 
 
 def setup(bot):

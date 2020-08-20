@@ -9,7 +9,7 @@ class Tags(commands.Cog):
         """Initialized the Tags cog"""
 
         self.bot = bot
-        self.database = self.bot.get_cog
+        self.database = self.bot.get_cog("Database")
 
     @commands.command(aliases=["tag_make", "create_tag"])
     @commands.check(staff_check)
