@@ -47,7 +47,7 @@ class Database(commands.Cog):
 
         await self.update_staff()
 
-    async def add_tag(self, tag, author):
+    async def add_tag(self, tag, content, author):
         """Adds a tag to the database"""
 
         existingTag = await self.get_tag(tag)
@@ -56,8 +56,8 @@ class Database(commands.Cog):
 
         async with self.db.acquire() as conn:
             await conn.execute(
-                "INSERT INTO tags (tag, author) VALUES ($1, $2)",
-                tag, author
+                "INSERT INTO tags (tag, content, author) VALUES ($1, $2, $3)",
+                tag, content, author
             )
 
     async def get_tag(self, tag):
