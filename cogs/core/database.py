@@ -29,11 +29,11 @@ class Database(commands.Cog):
     async def update_staff(self):
         """Updates the cached staff list"""
 
-        staff = await self.db.fetchrow(
-            "SELECT * FROM staff"
+        staff = await self.db.fetch(
+            "SELECT user_id FROM staff"
         )
 
-        self.bot.staff_list = list(staff)
+        self.bot.staff_list = list([int(member["user_id"]) for member in staff])
 
     async def remove_staff(self, user_id):
         """Removes a member from the staff list"""
