@@ -54,7 +54,7 @@ class InvalidStaff(Exception):
 
 
 class InsufficientPermissions(Exception):
-    ""Raised when a user tries to execute a command they do not have permissions for""
+    """Raised when a user tries to execute a command they do not have permissions for"""
 
     def __init__(self, message="A user tried to execute a command that they do not have permissions for"):
         super().__init__(self.message)

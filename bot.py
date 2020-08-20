@@ -37,7 +37,7 @@ with open("data/config.json", "r") as CONFIG:
     bot.config = json.load(CONFIG)
 
 with open("data/emojis.json", "r") as EMOJIs:
-    bot.emojis = json.load(EMOJIs)
+    bot.emoji = json.load(EMOJIs)
 
 
 bot.cog_list = [
