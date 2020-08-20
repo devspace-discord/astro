@@ -84,6 +84,19 @@ class Database(commands.Cog):
                 tag
             )
 
+    async def edit_tag(self, tag, author):
+        """Edits a custom tag in the database"""
+
+        existingTag = await self.get_tag(tag)
+        if not tag:
+            raise InvalidTag()
+
+        async with self.db.acquire() as conn:
+            await conn.execute(
+                "DELETE FROM tags WHERE tag = $1",
+                tag
+            )
+
 
 def setup(bot):
     bot.add_cog(Database(bot))
