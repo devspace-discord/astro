@@ -24,6 +24,8 @@ class Database(commands.Cog):
                 user_id
             )
 
+        await self.update_staff()
+
     async def update_staff(self):
         """Updates the cached staff list"""
 
@@ -42,6 +44,8 @@ class Database(commands.Cog):
                 "DELETE FROM staff WHERE user_id = $1",
                 user_id
             )
+
+        await self.update_staff()
 
     async def add_tag(self, tag, author):
         """Adds a tag to the database"""
