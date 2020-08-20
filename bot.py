@@ -1,4 +1,5 @@
 import os
+import json
 import dotenv
 import asyncio
 import asyncpg
@@ -30,6 +31,14 @@ async def database_setup():
         command_timeout=5
     )
 asyncio.get_event_loop().run_until_complete(database_setup())
+
+
+with open("data/config.json", "r") as CONFIG:
+    bot.config = json.load(CONFIG)
+
+with open("data/emojis.json", "r") as EMOJIs:
+    bot.emojis = json.load(EMOJIs)
+
 
 bot.cog_list = [
     "cogs.core.database",
