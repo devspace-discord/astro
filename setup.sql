@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS tags (
   tag varchar(55),
   content text,
   author bigint
-)
+);
 
 CREATE TABLE IF NOT EXISTS staff (
   user_id bigint
-)
+);
