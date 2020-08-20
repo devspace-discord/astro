@@ -10,9 +10,6 @@ class Tags(commands.Cog):
         self.bot = bot
         self.database = self.bot.get_cog
 
-    def staff_check(ctx):
-        return ctx.author.id in ctx.bot.staff
-
     @commands.command(aliases=["tag_make", "create_tag"])
     @commands.check(staff_check)
     async def make_tag(self, ctx, tag, *, content):
