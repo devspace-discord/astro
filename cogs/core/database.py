@@ -29,7 +29,9 @@ class Database(commands.Cog):
     async def update_staff(self):
         """Updates the cached staff list"""
 
-        staff = self.db.fetchrow("SELECT * FROM staff")
+        staff = await self.db.fetchrow(
+            "SELECT * FROM staff"
+        )
 
         self.bot.staff_list = list(staff)
 
