@@ -17,7 +17,7 @@ class Tags(commands.Cog):
         """Adds a custom tag to the database"""
 
         await self.database.add_tag(tag.lower(), content, ctx.author.id)
-        await ctx.send(f"Successfully created the ``{tag}`` tag!")
+        await ctx.send(f"{bot.emojis['yes']} Successfully created the tag - ``{tag}``")
 
     @commands.command()
     async def tag(self, ctx, *, tag):
@@ -39,7 +39,7 @@ class Tags(commands.Cog):
         """Removes a custom tag from the database"""
 
         await self.database.remove_tag(tag.lower())
-        await ctx.send(f"Successfully deleted the ``{tag}`` tag!")
+        await ctx.send(f"{bot.emojis['yes']} Successfully deleted the tag - ``{tag}``!")
 
     @commands.command()
     @commands.check(staff_check)
@@ -47,7 +47,7 @@ class Tags(commands.Cog):
         """Edits a tag in the database"""
 
         await self.database.edit_tag(tag, content)
-        await ctx.send("Successfully edited the tag")
+        await ctx.send(f"{bot.emojis['yes']} Successfully edited the tag - ``{tag}``")
 
 
 def setup(bot):
