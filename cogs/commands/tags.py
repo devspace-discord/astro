@@ -19,6 +19,20 @@ class Tags(commands.Cog):
         await self.database.add_tag(tag.lower(), content, ctx.author.id)
         await ctx.send(f"Successfully created the ``{tag}`` tag!")
 
+    @commands.command()
+    async def tag(self, ctx, *, tag):
+        """Gets a custom tag from the database"""
+
+        tag = await self.database.get_tag(tag.lower())
+        if not tag:
+            await ctx.send("This tag does not exist.")
+            return
+        user = self.bot.get_user(tag['author'])
+        new_line = "\n"
+        message = f":pencil: **{tag['tag']}**{new_line+'By - '+user.name+'#'+user.discriminator if user else ''}\n\n{tag['content']}"
+
+        await ctx.send(message)
+
 
 def setup(bot):
     bot.add_cog(Tags(bot))
