@@ -33,6 +33,14 @@ class Tags(commands.Cog):
 
         await ctx.send(message)
 
+    @commands.command(aliases=["remove_tag"])
+    @commands.check(staff_check)
+    async def delete_tag(self, ctx, *, tag):
+        """Removes a custom tag from the database"""
+
+        await self.database.remove_tag(tag.lower())
+        await ctx.send(f"Successfully deleted the ``{tag}`` tag!")
+
 
 def setup(bot):
     bot.add_cog(Tags(bot))
