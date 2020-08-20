@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS staff (
 CREATE TABLE IF NOT EXISTS reaction_roles (
   reaction_role_id serial,
   message_id bigint,
-  emoji varchar(55),
+  emoji text,
   role_id bigint
 )
