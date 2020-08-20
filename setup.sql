@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS tags (
   tag_id serial,
-  tag text,
+  tag varchar(55),
+  content text,
   author bigint
 )
 
