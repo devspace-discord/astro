@@ -17,7 +17,7 @@ class Tags(commands.Cog):
         """Adds a custom tag to the database"""
 
         await self.database.add_tag(tag.lower(), content, ctx.author.id)
-        await ctx.send(f"{bot.emojis['yes']} Successfully created the tag - ``{tag}``")
+        await ctx.send(f"{self.bot.emoji['yes']} Successfully created the tag - ``{tag}``")
 
     @commands.command()
     async def tag(self, ctx, *, tag):
@@ -25,7 +25,7 @@ class Tags(commands.Cog):
 
         tag = await self.database.get_tag(tag.lower())
         if not tag:
-            await ctx.send("This tag does not exist.")
+            await ctx.send(f"{self.bot.emoji['no']} This tag does not exist.")
             return
         user = self.bot.get_user(tag['author'])
         new_line = "\n"
@@ -39,7 +39,7 @@ class Tags(commands.Cog):
         """Removes a custom tag from the database"""
 
         await self.database.remove_tag(tag.lower())
-        await ctx.send(f"{bot.emojis['yes']} Successfully deleted the tag - ``{tag}``!")
+        await ctx.send(f"{self.bot.emoji['yes']} Successfully deleted the tag - ``{tag}``!")
 
     @commands.command()
     @commands.check(staff_check)
@@ -47,7 +47,7 @@ class Tags(commands.Cog):
         """Edits a tag in the database"""
 
         await self.database.edit_tag(tag, content)
-        await ctx.send(f"{bot.emojis['yes']} Successfully edited the tag - ``{tag}``")
+        await ctx.send(f"{self.bot.emoji['yes']} Successfully edited the tag - ``{tag}``")
 
 
 def setup(bot):

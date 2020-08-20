@@ -93,8 +93,8 @@ class Database(commands.Cog):
 
         async with self.db.acquire() as conn:
             await conn.execute(
-                "DELETE FROM tags WHERE tag = $1",
-                tag
+                "UPDATE tags SET content = $1 WHERE tag = $2",
+                content, tag
             )
 
 
