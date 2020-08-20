@@ -41,6 +41,14 @@ class Tags(commands.Cog):
         await self.database.remove_tag(tag.lower())
         await ctx.send(f"Successfully deleted the ``{tag}`` tag!")
 
+    @commands.command()
+    @commands.check(staff_check)
+    async def edit_tag(self, ctx, tag, *, content):
+        """Edits a tag in the database"""
+
+        await self.database.edit_tag(tag, content)
+        await ctx.send("Successfully edited the tag")
+
 
 def setup(bot):
     bot.add_cog(Tags(bot))

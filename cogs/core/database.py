@@ -84,7 +84,7 @@ class Database(commands.Cog):
                 tag
             )
 
-    async def edit_tag(self, tag, author):
+    async def edit_tag(self, tag, content):
         """Edits a custom tag in the database"""
 
         existingTag = await self.get_tag(tag)
