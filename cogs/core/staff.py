@@ -15,7 +15,15 @@ class Staff(commands.Cog):
         """Adds a user as to the staff member list"""
 
         await self.database.add_staff(user.id)
-        await ctx.send(f"{self.bot.emoji["yes"]} Successfully added ``{user.name+'#'+user.discriminator}`` to the staff member list!")
+        await ctx.send(f"{self.bot.emoji['yes']} Successfully added ``{user.name+'#'+user.discriminator}`` to the staff member list!")
+
+    @commands.command()
+    @commands.is_owner()
+    async def remove_staff(self, ctx, user: discord.User):
+        """Removes a user from the staff member list"""
+
+        await self.database.remove_staff(user.id)
+        await ctx.send(f"{self.bot.emoji['yes']} Successfully removed ``{user.name+'#'+user.discriminator}`` from the staff member list!")
 
 
 def setup(bot):
