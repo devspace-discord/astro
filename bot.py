@@ -13,9 +13,15 @@ DB_HOST = os.getenv('DB_HOST')
 DATABASE = os.getenv('DATABASE')
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
+DEV_MODE = os.getenv("DEV_MODE")
+
+if DEV_MODE:
+    prefix = "}"
+else:
+    prefix = ["!", "!!", "-", "/", ">"]
 
 bot = commands.Bot(
-    command_prefix=["!", "!!", "-", "/", ">"],
+    command_prefix=prefix,
     case_insensitive=True
 )
 
