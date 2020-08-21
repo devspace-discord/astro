@@ -62,7 +62,7 @@ class Database(commands.Cog):
                 tag, content, author
             )
 
-    async def get_tag(self, tag):
+    async def get_tag(self, tag) -> asyncpg.Record:
         """Gets a tag from the database"""
 
         tag = await self.db.fetchrow(
@@ -106,13 +106,15 @@ class Database(commands.Cog):
                 message_id, emoji, role_id
             )
 
-    async def get_reaction_role(self, message_id, emoji):
+    async def get_reaction_role(self, message_id, emoji) -> asyncpg.Record:
         """Gets a reaction role from the database"""
 
         reaction_role = await self.db.fetchrow(
             "SELECT * FROM reaction_roles WHERE message_id = $1 AND emoji = $2",
             message_id, emoji
         )
+
+        return reaction_role
 
     async def remove_reaction_role(self, message_id, emoji):
         """Removes a reaction role from the database"""
