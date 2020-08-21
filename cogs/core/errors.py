@@ -107,8 +107,9 @@ class Errors(commands.Cog):
                 await self.bot.error_channel.send(embed=embed)
 
         except Exception as e:
+            if isinstance(e, AttributeError):
+                return
             print(e)
-            pass
 
 
 def setup(bot):
