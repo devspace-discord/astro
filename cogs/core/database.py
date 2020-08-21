@@ -107,6 +107,14 @@ class Database(commands.Cog):
                 message_id, emoji, role_id
             )
 
+    async def get_reaction_role(self, message_id, emoji):
+        """Gets a reaction role from the database"""
+
+        reaction_role = await self.db.fetchrow(
+            "SELECT * FROM reaction_roles WHERE message_id = $1 AND emoji = $2",
+            message_id, emoji
+        )
+
 
 def setup(bot):
     bot.add_cog(Database(bot))
