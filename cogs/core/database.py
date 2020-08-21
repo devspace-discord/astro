@@ -122,8 +122,6 @@ class Database(commands.Cog):
 
     async def remove_reaction_role(self, message_id, emoji):
         """Removes a reaction role from the database"""
-        print(message_id, emoji)
-        print(type(message_id), type(emoji))
 
         existingReactionRole = await self.get_reaction_role(message_id, emoji)
         if not existingReactionRole:
