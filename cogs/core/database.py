@@ -122,6 +122,8 @@ class Database(commands.Cog):
 
     async def remove_reaction_role(self, message_id, emoji):
         """Removes a reaction role from the database"""
+        print(message_id, emoji)
+        print(type(message_id), type(emoji))
 
         existingReactionRole = await self.get_reaction_role(message_id, emoji)
         if not existingReactionRole:
@@ -129,7 +131,7 @@ class Database(commands.Cog):
 
         async with self.db.acquire() as conn:
             await conn.execute(
-                "DELETE FROM reaction_roles WHERE message_id = $1 AND emoji = $1",
+                "DELETE FROM reaction_roles WHERE message_id = $1 AND emoji = $2",
                 message_id, emoji
             )
 
