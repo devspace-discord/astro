@@ -100,6 +100,10 @@ class Database(commands.Cog):
     async def add_reaction_role(self, message_id, emoji, role_id):
         """Adds reaction role functionality to a message in the database"""
 
+        existingReactionRole = await self.get_reaction_role(message_id, emoji)
+        if existingReactionRole:
+            raise ReactionRoleAlreadyExists()
+
         async with self.db.acquire() as conn:
             await conn.execute(
                 "INSERT INTO reaction_roles (message_id, emoji, role_id) VALUES ($1, $2, $3)",
