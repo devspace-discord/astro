@@ -100,7 +100,7 @@ class Errors(commands.Cog):
                 )
                 embed.add_field(
                     name="Error",
-                    value=f"```{traceback_error[:1024]}```",
+                    value=f"```{traceback_error[:1000]}```",
                     inline=False
                 )
 
