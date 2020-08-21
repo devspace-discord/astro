@@ -1,4 +1,5 @@
 import discord
+from ..util import *
 from discord.ext import commands
 
 
@@ -8,6 +9,16 @@ class ReactionRoles(commands.Cog):
         """Initialized the ReactionRoles cog"""
 
         self.bot = bot
+        self.database = self.bot.get_cog("Database")
+
+    @commands.command()
+    @commands.check(staff_check)
+    async def add_reaction_role(self, ctx, message_id: int, emoji: str, role: discord.Role):
+        """Registers a message with reaction role functionality"""
+
+        await self.database.add_reaction_role(message_id, emoji, role.id)
+
+        await ctx.send(f"{self.bot.emoji['yes']} Successfully added reaction roles for the mentioned message!")
 
 
 def setup(bot):
