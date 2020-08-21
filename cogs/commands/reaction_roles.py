@@ -29,6 +29,33 @@ class ReactionRoles(commands.Cog):
 
         await ctx.send(f"{self.bot.emoji['yes']} Successfully removed reaction roles for the mentioned message!")
 
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        """Listens for reactions to give reaction roles"""
+
+        if payload.user_id == self.bot.user.id:
+            return
+
+        member = self.bot.guild.get_member(payload.user_id)
+        if not member:
+            return
+
+        if payload.emoji.is_custom_emoji() and payload.emoji.animated:
+            emoji = f"<a:{payload.emoji.name}:{payload.emoji.id}>"
+        elif payload.emoji.is_custom_emoji() and not payload.emoji.animated:
+            emoji = f"<:{payload.emoji.name}:{payload.emoji.id}>"
+        elif payload.emoji.is_unicode_emoji():
+            emoji = payload.emoji.name
+        else:
+            return
+
+        reaction_role = await self.database.get_reaction_role(payload.message_id, emoji)
+        if not reaction_role:
+            return
+
+        role = self.bot.guild.get_role(reaction_role['role_id'])
+        await member.add_roles(role, reason="Reaction Role")
+
 
 def setup(bot):
     bot.add_cog(ReactionRoles(bot))
