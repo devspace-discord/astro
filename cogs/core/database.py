@@ -101,7 +101,6 @@ class Database(commands.Cog):
         """Adds reaction role functionality to a message in the database"""
 
         async with self.db.acquire() as conn:
-
             await conn.execute(
                 "INSERT INTO reaction_roles (message_id, emoji, role_id) VALUES ($1, $2, $3)",
                 message_id, emoji, role_id
@@ -114,6 +113,15 @@ class Database(commands.Cog):
             "SELECT * FROM reaction_roles WHERE message_id = $1 AND emoji = $2",
             message_id, emoji
         )
+
+    async def remove_reaction_role(self, message_id, emoji):
+        """Removes a reaction role from the database"""
+
+        async with self.db.acquire() as conn:
+            await conn.execute(
+                "DELETE FROM reaction_roles WHERE message_id = $1 AND emoji = $1",
+                message_id, emoji
+            )
 
 
 def setup(bot):
