@@ -74,8 +74,6 @@ class Errors(commands.Cog):
                 ]))
 
             else:
-                print(error)
-                print(MemberAlreadyStaff)
                 message = random.choice([
                     "Something went wrong \:P",
                     "I just broke, please tell someone"
@@ -90,9 +88,26 @@ class Errors(commands.Cog):
 
                 user_input = ctx.message.content
 
-                embed = discord.Embed()
+                embed = discord.Embed(
+                    title=":rotating_light: New Error",
+                    color=self.bot.config["hex"]
+                )
+
+                embed.add_field(
+                    name="Command",
+                    value=f"```{user_input}```",
+                    inline=False
+                )
+                embed.add_field(
+                    name="Error",
+                    value=f"```{traceback_error[:1024]}```",
+                    inline=False
+                )
+
+                await self.bot.error_channel.send(embed=embed)
 
         except Exception as e:
+            print(e)
             pass
 
 
