@@ -28,10 +28,8 @@ class Tags(commands.Cog):
             await ctx.send(f"{self.bot.emoji['no']} This tag does not exist.")
             return
         user = self.bot.get_user(tag['author'])
-        new_line = "\n"
-        message = f":pencil: **{tag['tag']}**{new_line+'By - '+user.name+'#'+user.discriminator if user else ''}\n\n{tag['content']}"
 
-        await ctx.send(message)
+        await ctx.send(tag["content"])
 
     @commands.command(aliases=["remove_tag"])
     @commands.check(staff_check)
