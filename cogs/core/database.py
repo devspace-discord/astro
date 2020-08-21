@@ -97,6 +97,16 @@ class Database(commands.Cog):
                 content, tag
             )
 
+    async def add_reaction_role(self, message_id, emoji, role_id):
+        """Adds reaction role functionality to a message in the database"""
+
+        async with self.db.acquire() as conn:
+
+            await conn.execute(
+                "INSERT INTO reaction_roles (message_id, emoji, role_id) VALUES ($1, $2, $3)",
+                message_id, emoji, role_id
+            )
+
 
 def setup(bot):
     bot.add_cog(Database(bot))
