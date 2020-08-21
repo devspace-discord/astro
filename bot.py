@@ -8,12 +8,11 @@ from discord.ext import commands
 
 # loads environment variables
 dotenv.load_dotenv()
-TOKEN = os.getenv("token")
+TOKEN = os.getenv("TOKEN")
 DB_HOST = os.getenv('DB_HOST')
 DATABASE = os.getenv('DATABASE')
 DB_USER = os.getenv('DB_USER')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
-DISBOTS_AUTH = os.getenv('disbots_auth')
 
 bot = commands.Bot(
     command_prefix=["!", "!!", "-", "/", ">"],
