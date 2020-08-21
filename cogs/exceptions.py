@@ -70,9 +70,20 @@ class InsufficientPermissions(Exception):
 
 
 class ReactionRoleAlreadyExists(Exception):
-    ""Raised when the inputted reaction role already exists""
+    """Raised when the inputted reaction role already exists"""
 
     def __init__(self, message="The inputted reaction role already exists"):
+        self.message = message
+        super().__init__(message)
+
+    def __str__(self):
+        return self.message
+
+
+class InvalidReactionRole(Exception):
+    """Raised when the inputted reaction role does not exist"""
+
+    def __init__(self, message="The inputted reaction role does not exist"):
         self.message = message
         super().__init__(message)
 
