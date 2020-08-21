@@ -44,7 +44,8 @@ bot.cog_list = [
     "cogs.core.errors",
     "cogs.core.events",
     "cogs.core.staff",
-    "cogs.commands.tags"
+    "cogs.commands.tags",
+    "cogs.commands.reaction_roles"
 ]
 for cog in bot.cog_list:
     bot.load_extension(cog)
